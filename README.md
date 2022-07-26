@@ -20,5 +20,5 @@ Custom .exe icon
 English readme  
 Dropdown lists of previous folders  
 GUI polish  
-Code unspaghetting  
+Code unspaghetting  (like i can ever do that lmao)
 
