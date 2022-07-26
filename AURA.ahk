@@ -14,7 +14,7 @@ IniRead, LastSrc, AURA.ini, DefaultVars, LastSrc
 IniRead, LastRes, AURA.ini, DefaultVars, LastRes
 IniRead, LastPat, AURA.ini, DefaultVars, LastPat
 
-Gui, Show, W480 H200, AURA image uniqalizer v0.99
+Gui, Show, W480 H200, AURA image uniqalizer
 Gui, Add, Edit, r1 vSrcFolderPath W400 x40 y16, Path to folder with pics to uniqalize
 Gui, Add, Edit, r1 vResFolderPath W400 x40 y104, Path to put unique pics to
 Gui, Add, Edit, r1 vPatFilePath W400 x40 y60, Path to uniqalisation pattern
@@ -31,8 +31,15 @@ return
 
 
 
+;GuiDropFiles(GuiHwnd, FileArray, CtrlHwnd, X, Y) {
+;		FileValue := FileArray[1]
+;		GuiControl,, CtrlHwnd
+;		return
+;}
 
-
+GuiDropFiles:
+guicontrol, , %a_guicontrol%, %a_guievent%
+return
 
 
 SrcDirSel:
@@ -59,7 +66,7 @@ return
 PicsProcess:
 {
 	Gui, Submit, NoHide
-	GuiControl, Text, PrcButton, Please wait...
+	GuiControl, Text, PrcButton, "Please wait..."
 
 
 	IniWrite, %SrcFolderPath%, AURA.ini, DefaultVars, LastSrc
@@ -128,7 +135,7 @@ logirovanje.WriteLine("Let the process begin!")
 	Gdip_DisposeImage(pWmark)
 	
 	MsgBox % "Processed all " . FileList.MaxIndex() . " files and saved them to " . ResFolderPath
-	GuiControl, Text, PrcButton, ALL DONE!
+	GuiControl, Text, PrcButton, "ALL DONE!"
 	return
 }
 
@@ -140,3 +147,34 @@ logirovanje.WriteLine("Let the process begin!")
 GuiClose:
 Gdip_Shutdown(pToken)
 ExitApp
+return
+
+SrcParse(ParsArr){
+	Loop, Parse, ParsArr, `n 
+		{
+    SrcFold := A_LoopField
+    GuiControl,, SrcFolderPath, %SrcFold%
+    break
+		}
+		return
+}
+
+ResParse(ParsArr){
+	Loop, Parse, ParsArr, `n
+{
+    ResFold := A_LoopField
+    GuiControl,, ResFolderPath, %ResFold%
+    break
+}
+return
+}
+
+PatParse(ParsArr){
+	Loop, Parse, ParsArr, `n
+{
+    PatFold := A_LoopField
+    GuiControl,, PatFilePath, %PatFold%
+    break
+}
+return
+}
