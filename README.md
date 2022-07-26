@@ -16,7 +16,9 @@
 Откройте AURA.ahk  
 
 TODO:  
+Custom .exe icon  
 English readme  
 Dropdown lists of previous folders  
 GUI polish  
 Code unspaghetting  
+
