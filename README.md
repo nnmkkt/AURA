@@ -22,6 +22,7 @@
 TODO:  
 Custom .exe icon  
 English readme  
+~~Keeping parent folders~~ DONE!
 Dropdown lists of previous folders  
 GUI polish  
 Code unspaghetting  (like i can ever do that lmao)
