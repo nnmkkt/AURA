@@ -14,7 +14,7 @@ IniRead, LastSrc, AURA.ini, DefaultVars, LastSrc
 IniRead, LastRes, AURA.ini, DefaultVars, LastRes
 IniRead, LastPat, AURA.ini, DefaultVars, LastPat
 
-Gui, Show, W480 H200, AURA image uniqalizer
+Gui, Show, W480 H200, AURA image uniqualizer
 Gui, Add, Edit, r1 vSrcFolderPath W400 x40 y16, Path to folder with pics to uniqalize
 Gui, Add, Edit, r1 vResFolderPath W400 x40 y104, Path to put unique pics to
 Gui, Add, Edit, r1 vPatFilePath W400 x40 y60, Path to uniqalisation pattern
