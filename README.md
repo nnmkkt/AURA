@@ -25,5 +25,5 @@ English readme
 ~~Keeping parent folders~~ DONE!   
 Dropdown lists of previous folders  
 GUI polish  
-Code unspaghetting  (like i can ever do that lmao)
-Rewrite that shit in normal language and not AutoHotKey (probably wont happen, but who knows)
+Code unspaghetting  (like i can ever do that lmao)   
+Rewrite that shit in normal language and not AutoHotKey (probably wont happen, but who knows)   
