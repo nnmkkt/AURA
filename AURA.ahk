@@ -23,6 +23,7 @@ Gui, Add, Button, x440 y60 w17 h17 vPatButton gPatFileSel, ...
 Gui, Add, Button, x440 y104 w17 h17 vResButton gResDirSel, ...
 Gui, Add, Edit, r1 vPostfix x150 w100, Filename postfix
 Gui, Add, Edit, r1 vIterations x250 y131 w100, Number of iterations
+Gui, Add, UpDown, vMyUpDown, 5
 Gui, Add, Button, x100 w300 h30 Center vPrcButton gPicsProcess, PROCESS IT ALREADY!!1!
 GuiControl,, SrcFolderPath, %LastSrc%
 GuiControl,, ResFolderPath, %LastRes%
@@ -66,7 +67,7 @@ return
 PicsProcess:
 {
 	Gui, Submit, NoHide
-	GuiControl, Text, PrcButton, "Please wait..."
+	GuiControl, Text, PrcButton, Please wait...
 
 
 	IniWrite, %SrcFolderPath%, AURA.ini, DefaultVars, LastSrc
@@ -74,7 +75,7 @@ PicsProcess:
 	IniWrite, %PatFilePath%, AURA.ini, DefaultVars, LastPat
 
 
-logirovanje := FileOpen("log.txt", w)
+logirovanje := FileOpen("log.txt", "w")
 logirovanje.WriteLine("Let the process begin!")
 		pWmark := Gdip_CreateBitmapFromFile(PatFilePath)
 		wmWidth := Gdip_GetImageWidth(pWmark), wmHeight := Gdip_GetImageHeight(pWmark)
@@ -96,14 +97,15 @@ logirovanje.WriteLine("Let the process begin!")
 
 	Loop % Iterations
 {	
-	LoopNum := A_Index
 
 	Random, rngX, -200, 0
 	Random, rngY, -200, 0
 
 	Loop % FileList.MaxIndex()
 	{
-		fp := StrReplace(FileList[A_Index], SrcFolderPath)
+		ParentFolder := StrSplit(SrcFolderPath, "\")
+		OneMoreSrc := StrReplace(SrcFolderPath, "\" . ParentFolder[ParentFolder.MaxIndex()])
+		fp := StrReplace(FileList[A_Index], OneMoreSrc)
 		fp := StrReplace(fp, NamesList[A_Index])
 		namenoext := StrReplace(NamesList[A_Index], ".jpg")
 		resDir := ResFolderPath . fp 
@@ -113,7 +115,7 @@ logirovanje.WriteLine("Let the process begin!")
 			FileCreateDir, %resDir%
 		}
 
-		resFile := ResFolderPath . fp . namenoext . "_" . Postfix . LoopNum . ".jpg"
+		resFile := ResFolderPath . fp . namenoext . "_" . Postfix . A_Index . ".jpg"
 		CurrentFile:=FileList[A_Index]
 		pBitmapF := Gdip_CreateBitmapFromFile(CurrentFile)
 		Width := Gdip_GetImageWidth(pBitmapF), Height := Gdip_GetImageHeight(pBitmapF)
@@ -123,7 +125,7 @@ logirovanje.WriteLine("Let the process begin!")
 		rngXXX := rngX + (Width/2)
 		rngYYY := rngY + (Height/2)
 		Gdip_DrawImage(Graph, pBitmapF)
-		Gdip_DrawImage(Graph, pWmark, rngX, rngY, wmWidth, wmHeight, 0, 0, Width, Height)
+		Gdip_DrawImage(Graph, pWmark, rngXXX, rngYYY, wmWidth, wmHeight, 0, 0, Width, Height)
 
 		Gdip_SaveBitmapToFile(pCanvas, resFile)
 		logirovanje.WriteLine("Saved " . CurrentFile . " to " . resFile)
@@ -135,7 +137,7 @@ logirovanje.WriteLine("Let the process begin!")
 	Gdip_DisposeImage(pWmark)
 	
 	MsgBox % "Processed all " . FileList.MaxIndex() . " files and saved them to " . ResFolderPath
-	GuiControl, Text, PrcButton, "ALL DONE!"
+	GuiControl, Text, PrcButton, ALL DONE!
 	return
 }
 
