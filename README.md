@@ -26,4 +26,5 @@ English readme
 Dropdown lists of previous folders  
 GUI polish  
 Code unspaghetting  (like i can ever do that lmao)   
-Rewrite that shit in normal language and not AutoHotKey (probably wont happen, but who knows)   
+Rewrite that shit in normal language and not AutoHotKey (probably wouldnt happen, but who knows)   
+Figure out why AURA eats up a crapton of ram and fix it (aka rewrite that shit in normal language)   
