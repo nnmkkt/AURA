@@ -14,7 +14,7 @@ IniRead, LastSrc, AURA.ini, DefaultVars, LastSrc
 IniRead, LastRes, AURA.ini, DefaultVars, LastRes
 IniRead, LastPat, AURA.ini, DefaultVars, LastPat
 
-Gui, Show, W480 H200, AURA image uniqualizer
+Gui, Show, W480 H200, AURA image uniqalizer
 Gui, Add, Edit, r1 vSrcFolderPath W400 x40 y16, Path to folder with pics to uniqalize
 Gui, Add, Edit, r1 vResFolderPath W400 x40 y104, Path to put unique pics to
 Gui, Add, Edit, r1 vPatFilePath W400 x40 y60, Path to uniqalisation pattern
@@ -88,26 +88,20 @@ logirovanje.WriteLine("Let the process begin!")
 	;Getting All the files in src folder and its subfolders
 	Loop, Files, %SrcF%, R
 	{
-		FileList.Push(A_LoopFileFullPath)
-		NamesList.Push(A_LoopFileName)
-		logirovanje.WriteLine(FileList[A_Index])
-		logirovanje.WriteLine(NamesList[A_Index])
-		logirovanje.WriteLine()
-	}
-
+		FileList := A_LoopFileFullPath
+		NamesList := A_LoopFileName
+        FileCount++
 	Loop % Iterations
 {	
-
 	Random, rngX, -200, 0
 	Random, rngY, -200, 0
 
-	Loop % FileList.MaxIndex()
-	{
+	
 		ParentFolder := StrSplit(SrcFolderPath, "\")
 		OneMoreSrc := StrReplace(SrcFolderPath, "\" . ParentFolder[ParentFolder.MaxIndex()])
-		fp := StrReplace(FileList[A_Index], OneMoreSrc)
-		fp := StrReplace(fp, NamesList[A_Index])
-		namenoext := StrReplace(NamesList[A_Index], ".jpg")
+		fp := StrReplace(FileList, OneMoreSrc)
+		fp := StrReplace(fp, NamesList)
+		namenoext := StrReplace(NamesList, ".jpg")
 		resDir := ResFolderPath . fp 
 
 		if !InStr(FileExist(resdir), "D") 
@@ -116,7 +110,7 @@ logirovanje.WriteLine("Let the process begin!")
 		}
 
 		resFile := ResFolderPath . fp . namenoext . "_" . Postfix . A_Index . ".jpg"
-		CurrentFile:=FileList[A_Index]
+		CurrentFile:=FileList
 		pBitmapF := Gdip_CreateBitmapFromFile(CurrentFile)
 		Width := Gdip_GetImageWidth(pBitmapF), Height := Gdip_GetImageHeight(pBitmapF)
 		pCanvas := Gdip_CreateBitmap(Width, Height)
@@ -130,19 +124,18 @@ logirovanje.WriteLine("Let the process begin!")
 		Gdip_SaveBitmapToFile(pCanvas, resFile)
 		logirovanje.WriteLine("Saved " . CurrentFile . " to " . resFile)
 		Gdip_DisposeImage(pBitmapF)
+        Gdip_DisposeImage(pCanvas)
 		Gdip_DeleteGraphics(Graph)
 
-	}
 }
-	Gdip_DisposeImage(pWmark)
+
+}
+Gdip_DisposeImage(pWmark)
 	
-	MsgBox % "Processed all " . FileList.MaxIndex() . " files and saved them to " . ResFolderPath
+	MsgBox % "Processed all " . FileCount . " files and saved them to " . ResFolderPath
 	GuiControl, Text, PrcButton, ALL DONE!
 	return
 }
-
-
-
 
 
 
@@ -151,32 +144,3 @@ Gdip_Shutdown(pToken)
 ExitApp
 return
 
-SrcParse(ParsArr){
-	Loop, Parse, ParsArr, `n 
-		{
-    SrcFold := A_LoopField
-    GuiControl,, SrcFolderPath, %SrcFold%
-    break
-		}
-		return
-}
-
-ResParse(ParsArr){
-	Loop, Parse, ParsArr, `n
-{
-    ResFold := A_LoopField
-    GuiControl,, ResFolderPath, %ResFold%
-    break
-}
-return
-}
-
-PatParse(ParsArr){
-	Loop, Parse, ParsArr, `n
-{
-    PatFold := A_LoopField
-    GuiControl,, PatFilePath, %PatFold%
-    break
-}
-return
-}
