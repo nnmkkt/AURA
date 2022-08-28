@@ -25,24 +25,13 @@ If !pToken := Gdip_Startup()
 	ExitApp
 }
 
-IniRead, LastSrc1, AURA.ini, Dropdown, LastSrc1
-IniRead, LastSrc2, AURA.ini, Dropdown, LastSrc2
-IniRead, LastSrc3, AURA.ini, Dropdown, LastSrc3
-IniRead, LastSrc4, AURA.ini, Dropdown, LastSrc4
-IniRead, LastSrc5, AURA.ini, Dropdown, LastSrc5
+Loop, 5 {
+IniRead, LastSrc%A_Index%, AURA.ini, Dropdown, LastSrc%A_Index%
 
-IniRead, LastRes1, AURA.ini, Dropdown, LastRes1
-IniRead, LastRes2, AURA.ini, Dropdown, LastRes2
-IniRead, LastRes3, AURA.ini, Dropdown, LastRes3
-IniRead, LastRes4, AURA.ini, Dropdown, LastRes4
-IniRead, LastRes5, AURA.ini, Dropdown, LastRes5
+IniRead, LastRes%A_Index%, AURA.ini, Dropdown, LastRes%A_Index%
 
-IniRead, LastPat1, AURA.ini, Dropdown, LastPat1
-IniRead, LastPat2, AURA.ini, Dropdown, LastPat2
-IniRead, LastPat3, AURA.ini, Dropdown, LastPat3
-IniRead, LastPat4, AURA.ini, Dropdown, LastPat4
-IniRead, LastPat5, AURA.ini, Dropdown, LastPat5
-
+IniRead, LastPat%A_Index%, AURA.ini, Dropdown, LastPat%A_Index%
+}
 Gui, Show, W480 H200, AURA image uniqalizer
 Gui, Add, ComboBox, r5 vSrcFolderPath W400 x40 y16 Choose1, %LastSrc1%||%LastSrc2%|%LastSrc3%|%LastSrc4%|%LastSrc5%
 Gui, Add, ComboBox, r5 vResFolderPath W400 x40 y104 Choose1, %LastRes1%||%LastRes2%|%LastRes3%|%LastRes4%|%LastRes5%
