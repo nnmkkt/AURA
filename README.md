@@ -18,11 +18,9 @@
 На правах дисклеймера: AURA может показаться вам весьма всратой. Причина этого в том, что изначально я делал ее для личного использования в работе и выложил на гитхаб по причине "чтобы было". Надеюсь в будущем доработать все это дело, чтоб все как у людей. Если что, вкладка Issues всегда открыта.  
   
 TODO:  
-Custom .exe icon  
+~~Custom .exe icon~~ DONE!  
 English readme  
 ~~Keeping parent folders~~ DONE!   
-Dropdown lists of previous folders  
+~~Dropdown lists of previous folders~~ DONE!  
 GUI polish  
-Code unspaghetting  (like i can ever do that lmao)   
-Rewrite that shit in normal language and not AutoHotKey (probably wouldnt happen, but who knows)   
 ~~Figure out why AURA eats up a crapton of ram and fix it (aka rewrite that shit in normal language)~~ DONE! Even without rewriting lol   
