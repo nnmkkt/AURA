@@ -3,7 +3,8 @@
 #Include, Gdip_All.ahk
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
+FileInstall, AURA_default.ini, AURA.ini, 0
+    
 global WM_USER               := 0x00000400
 global PBM_SETMARQUEE        := WM_USER + 10
 global PBM_SETSTATE          := WM_USER + 16
@@ -43,9 +44,9 @@ IniRead, LastPat4, AURA.ini, Dropdown, LastPat4
 IniRead, LastPat5, AURA.ini, Dropdown, LastPat5
 
 Gui, Show, W480 H200, AURA image uniqalizer
-Gui, Add, ComboBox, r5 vSrcFolderPath W400 x40 y16, %LastSrc1%||%LastSrc2%|%LastSrc3%|%LastSrc4%|%LastSrc5%
-Gui, Add, ComboBox, r5 vResFolderPath W400 x40 y104, %LastRes1%||%LastRes2%|%LastRes3%|%LastRes4%|%LastRes5%
-Gui, Add, ComboBox, r5 vPatFilePath W400 x40 y60, %LastPat1%||%LastPat2%|%LastPat3%|%LastPat4%|%LastPat5%
+Gui, Add, ComboBox, r5 vSrcFolderPath W400 x40 y16 Choose1, %LastSrc1%||%LastSrc2%|%LastSrc3%|%LastSrc4%|%LastSrc5%
+Gui, Add, ComboBox, r5 vResFolderPath W400 x40 y104 Choose1, %LastRes1%||%LastRes2%|%LastRes3%|%LastRes4%|%LastRes5%
+Gui, Add, ComboBox, r5 vPatFilePath W400 x40 y60 Choose1, %LastPat1%||%LastPat2%|%LastPat3%|%LastPat4%|%LastPat5%
 Gui, Add, Button, x440 y16 w17 h17 vSrcButton gSrcDirSel, ...
 Gui, Add, Button, x440 y60 w17 h17 vPatButton gPatFileSel, ...
 Gui, Add, Button, x440 y104 w17 h17 vResButton gResDirSel, ...
