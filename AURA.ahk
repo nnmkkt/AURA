@@ -3,7 +3,11 @@
 #Include, Gdip_All.ahk
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-FileInstall, AURA_default.ini, AURA.ini, 0
+if !InStr(FileExist(A_AppData . "\AURA"), "D") 
+		{
+			FileCreateDir, %A_AppData%\AURA
+		}
+FileInstall, AURA_default.ini, %A_AppData%\AURA\AURA.ini, 0
     
 global WM_USER               := 0x00000400
 global PBM_SETMARQUEE        := WM_USER + 10
@@ -26,11 +30,9 @@ If !pToken := Gdip_Startup()
 }
 
 Loop, 5 {
-IniRead, LastSrc%A_Index%, AURA.ini, Dropdown, LastSrc%A_Index%
-
-IniRead, LastRes%A_Index%, AURA.ini, Dropdown, LastRes%A_Index%
-
-IniRead, LastPat%A_Index%, AURA.ini, Dropdown, LastPat%A_Index%
+IniRead, LastSrc%A_Index%, %A_AppData%\AURA\AURA.ini, Dropdown, LastSrc%A_Index%
+IniRead, LastRes%A_Index%, %A_AppData%\AURA\AURA.ini, Dropdown, LastRes%A_Index%
+IniRead, LastPat%A_Index%, %A_AppData%\AURA\AURA.ini, Dropdown, LastPat%A_Index%
 }
 Gui, Show, W480 H200, AURA image uniqalizer
 Gui, Add, ComboBox, r5 vSrcFolderPath W400 x40 y16 Choose1, %LastSrc1%||%LastSrc2%|%LastSrc3%|%LastSrc4%|%LastSrc5%
@@ -104,23 +106,23 @@ Loop, Files, %SrcF%, R
 GuiControl,,Progressbar,0
 GuiControl, Show, Progressbar
 }
-    IniWrite, %LastSrc4%, AURA.ini, Dropdown, LastSrc5
-    IniWrite, %LastSrc3%, AURA.ini, Dropdown, LastSrc4
-    IniWrite, %LastSrc2%, AURA.ini, Dropdown, LastSrc3
-    IniWrite, %LastSrc1%, AURA.ini, Dropdown, LastSrc2
-    IniWrite, %SrcFolderPath%, AURA.ini, Dropdown, LastSrc1
+    IniWrite, %LastSrc4%, %A_AppData%\AURA\AURA.ini, Dropdown, LastSrc5
+    IniWrite, %LastSrc3%, %A_AppData%\AURA\AURA.ini, Dropdown, LastSrc4
+    IniWrite, %LastSrc2%, %A_AppData%\AURA\AURA.ini, Dropdown, LastSrc3
+    IniWrite, %LastSrc1%, %A_AppData%\AURA\AURA.ini, Dropdown, LastSrc2
+    IniWrite, %SrcFolderPath%, %A_AppData%\AURA\AURA.ini, Dropdown, LastSrc1
     
-    IniWrite, %LastRes4%, AURA.ini, Dropdown, LastRes5
-    IniWrite, %LastRes3%, AURA.ini, Dropdown, LastRes4
-    IniWrite, %LastRes2%, AURA.ini, Dropdown, LastRes3
-    IniWrite, %LastRes1%, AURA.ini, Dropdown, LastRes2
-    IniWrite, %ResFolderPath%, AURA.ini, Dropdown, LastRes1
+    IniWrite, %LastRes4%, %A_AppData%\AURA\AURA.ini, Dropdown, LastRes5
+    IniWrite, %LastRes3%, %A_AppData%\AURA\AURA.ini, Dropdown, LastRes4
+    IniWrite, %LastRes2%, %A_AppData%\AURA\AURA.ini, Dropdown, LastRes3
+    IniWrite, %LastRes1%, %A_AppData%\AURA\AURA.ini, Dropdown, LastRes2
+    IniWrite, %ResFolderPath%, %A_AppData%\AURA\AURA.ini, Dropdown, LastRes1
     
-    IniWrite, %LastPat4%, AURA.ini, Dropdown, LastPat5
-    IniWrite, %LastPat3%, AURA.ini, Dropdown, LastPat4
-    IniWrite, %LastPat2%, AURA.ini, Dropdown, LastPat3
-    IniWrite, %LastPat1%, AURA.ini, Dropdown, LastPat2
-    IniWrite, %PatFilePath%, AURA.ini, Dropdown, LastPat1
+    IniWrite, %LastPat4%, %A_AppData%\AURA\AURA.ini, Dropdown, LastPat5
+    IniWrite, %LastPat3%, %A_AppData%\AURA\AURA.ini, Dropdown, LastPat4
+    IniWrite, %LastPat2%, %A_AppData%\AURA\AURA.ini, Dropdown, LastPat3
+    IniWrite, %LastPat1%, %A_AppData%\AURA\AURA.ini, Dropdown, LastPat2
+    IniWrite, %PatFilePath%, %A_AppData%\AURA\AURA.ini, Dropdown, LastPat1
     
     
 		pWmark := Gdip_CreateBitmapFromFile(PatFilePath)
