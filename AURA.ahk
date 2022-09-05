@@ -34,17 +34,22 @@ IniRead, LastSrc%A_Index%, %A_AppData%\AURA\AURA.ini, Dropdown, LastSrc%A_Index%
 IniRead, LastRes%A_Index%, %A_AppData%\AURA\AURA.ini, Dropdown, LastRes%A_Index%
 IniRead, LastPat%A_Index%, %A_AppData%\AURA\AURA.ini, Dropdown, LastPat%A_Index%
 }
-Gui, Show, W480 H200, AURA image uniqalizer
-Gui, Add, ComboBox, r5 vSrcFolderPath W400 x40 y16 Choose1, %LastSrc1%||%LastSrc2%|%LastSrc3%|%LastSrc4%|%LastSrc5%
-Gui, Add, ComboBox, r5 vResFolderPath W400 x40 y104 Choose1, %LastRes1%||%LastRes2%|%LastRes3%|%LastRes4%|%LastRes5%
-Gui, Add, ComboBox, r5 vPatFilePath W400 x40 y60 Choose1, %LastPat1%||%LastPat2%|%LastPat3%|%LastPat4%|%LastPat5%
-Gui, Add, Button, x440 y16 w17 h17 vSrcButton gSrcDirSel, ...
-Gui, Add, Button, x440 y60 w17 h17 vPatButton gPatFileSel, ...
-Gui, Add, Button, x440 y104 w17 h17 vResButton gResDirSel, ...
-Gui, Add, Edit, r1 vPostfix x150 w100, Filename postfix
-Gui, Add, Edit, r1 vIterations x250 y131 w100, Number of iterations
+Gui, Show, w480 h294, AURA image uniqalizer
+Gui, Add, ComboBox, r5 vSrcFolderPath W400 x32 y40 w400 Choose1, %LastSrc1%||%LastSrc2%|%LastSrc3%|%LastSrc4%|%LastSrc5%
+Gui, Add, ComboBox, r5 vResFolderPath W400 x32 y152 w400 Choose1, %LastRes1%||%LastRes2%|%LastRes3%|%LastRes4%|%LastRes5%
+Gui, Add, ComboBox, r5 vPatFilePath x32 y96 w400 Choose1, %LastPat1%||%LastPat2%|%LastPat3%|%LastPat4%|%LastPat5%
+Gui, Add, Button, x432 y40 w17 h17 vSrcButton gSrcDirSel, ...
+Gui, Add, Button, x432 y96 vPatButton gPatFileSel, ...
+Gui, Add, Button, x432 y152 w17 h17 vResButton gResDirSel, ...
+Gui, Add, Edit, r1 vPostfix x105 y216 w100, Filename postfix
+Gui, Add, Edit, r1 vIterations x249 y216 w116, Number of iterations
 Gui, Add, UpDown, vMyUpDown, 5
-Gui, Add, Button, x100 w300 h30 Center vPrcButton gPicsProcess, PROCESS IT ALREADY!!1!
+Gui, Add, Button, x88 y256 w300 h30 Center vPrcButton gPicsProcess, PROCESS IT ALREADY!
+Gui Add, Text, x32 y16 w417 h23 +0x200, Path to folder with pics to process:
+Gui Add, Text, x32 y72 w418 h23 +0x200, Path to uniqualization pattern:
+Gui Add, Text, x32 y128 w416 h20 +0x200, Path to put processed pics to:
+Gui Add, Text, x105 y192 w100 h21 +0x200, Filename postfix:
+Gui Add, Text, x249 y192 w117 h21 +0x200, Number of Iterations:
 GuiControl,, SrcFolderPath, %LastSrc%
 GuiControl,, ResFolderPath, %LastRes%
 GuiControl,, PatFilePath, %LastPat%
