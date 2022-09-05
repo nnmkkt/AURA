@@ -22,5 +22,5 @@ TODO:
 English readme  
 ~~Keeping parent folders~~ DONE!   
 ~~Dropdown lists of previous folders~~ DONE!  
-GUI polish  
+~~GUI polish~~ DONE! Kinda...  
 ~~Figure out why AURA eats up a crapton of ram and fix it (aka rewrite that shit in normal language)~~ DONE! Even without rewriting lol   
