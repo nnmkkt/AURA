@@ -10,7 +10,7 @@
 
 Просто скачайте скомпилированный .exe файл из вкладки Releases и затем откройте  
 ИЛИ  
-Скачайте [AutoHotKey](https://autohotkey.com)  
+Скачайте [AutoHotKey](https://www.autohotkey.com/download/ahk-install.exe)  
 Скачайте AURA.ahk из данного репозитория  
 Скачайте [GDI+](https://www.dropbox.com/s/0e9gdfetbfa8v0o/Gdip_All.ahk) и положите его в папку с AURA  
 Откройте AURA.ahk  
